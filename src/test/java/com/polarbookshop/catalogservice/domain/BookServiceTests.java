@@ -25,7 +25,7 @@ public class BookServiceTests {
         var bookIsbn = "1234561232";
         var bookToCreate = Book.of(bookIsbn, "Title", "Author", 9.99);
 
-        when(bookRepository.existByIsbn(bookIsbn)).thenReturn(true);
+        when(bookRepository.existsByIsbn(bookIsbn)).thenReturn(true);
         assertThatThrownBy(() -> bookService.addBookToCatalog(bookToCreate))
                 .isInstanceOf(BookAlreadyExistsException.class)
                 .hasMessage("A book with ISBN " + bookIsbn + " already exists.");
