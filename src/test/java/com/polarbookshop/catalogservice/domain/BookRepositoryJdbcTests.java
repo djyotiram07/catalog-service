@@ -31,8 +31,8 @@ public class BookRepositoryJdbcTests {
 
     @Test
     void findAllBooks() {
-        var book1 = Book.of("1234567991", "Title", "Author", 10.99);
-        var book2 = Book.of("1234567992", "Title", "Author", 11.99);
+        var book1 = Book.of("1234567991", "Title", "Author", 10.99, "Polarsophia");
+        var book2 = Book.of("1234567992", "Title", "Author", 11.99, "Polarsophia");
         jdbcAggregateTemplate.insert(book1);
         jdbcAggregateTemplate.insert(book2);
         Iterable<Book> actualBooks = bookRepository.findAll();
@@ -45,7 +45,7 @@ public class BookRepositoryJdbcTests {
     @Test
     void findBookByIsbnWhenExisting() {
         var bookIsbn = "1234567791";
-        var book = Book.of(bookIsbn, "Title", "Author", 12.90);
+        var book = Book.of(bookIsbn, "Title", "Author", 12.90, "Polarsophia");
         jdbcAggregateTemplate.insert(book);
         Optional<Book> actualBook = bookRepository.findByIsbn(bookIsbn);
 
@@ -62,7 +62,7 @@ public class BookRepositoryJdbcTests {
     @Test
     void existsByIsbnWhenExisting() {
         var bookIsbn = "1234567891";
-        var book = Book.of(bookIsbn, "Title", "Author", 20.99);
+        var book = Book.of(bookIsbn, "Title", "Author", 20.99, "Polarsophia");
         jdbcAggregateTemplate.insert(book);
         boolean existing = bookRepository.existsByIsbn(bookIsbn);
 
@@ -78,7 +78,7 @@ public class BookRepositoryJdbcTests {
     @Test
     void deleteByIsbn() {
         var bookIsbn = "1234567891";
-        var bookToCreate = Book.of(bookIsbn, "Title", "Author", 10.99);
+        var bookToCreate = Book.of(bookIsbn, "Title", "Author", 10.99, "Polarsophia");
         var persistedBook = jdbcAggregateTemplate.insert(bookToCreate);
         bookRepository.deleteByIsbn(bookIsbn);
 
