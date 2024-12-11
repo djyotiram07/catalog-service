@@ -19,7 +19,7 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
-          distribution: amazoncorretto
+          distribution: corretto
           java-version: 21
           cache: gradle
       - name: Code vulnerability scanning
@@ -54,7 +54,7 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          distribution: amazoncorretto
+          distribution: corretto
           java-version: 21
           cache: gradle
       - name: Build container image
